@@ -26,7 +26,7 @@ typedef                     pair<ll, ll> pl;
 typedef                     unsigned long long ull;
 #define _mod                1000000007
 #define ff                  first
-#define ln 					'\n'
+#define ln 					'\n';
 #define ss                  second
 #define pb                  push_back
 #define sz(v)               ll(v.size())
@@ -82,46 +82,17 @@ void solve(){
 	ll k; cin >> k;
 	while(k--){
 		ll l, r; cin >> l >> r;
-		//first value that is greater than or equal to x (lower bound).
-		ll low = 0, up = n-1;
-		ll ans = 0;
-		while(low <= up){
-			ll mid = low + (up - low)/2;
-			if(v[mid] >= l){
-				ans = mid;
-				up = mid - 1;
-			}
-			else{
-				low = mid + 1;
-			}
-		}
-
-		//first value that is less than or equal to x (upper bound).
-		ll low1 = 0, up1 = n-1;
-		ll ans1 = 0;
-		while(low1 <= up1){
-			ll mid1 = low1 + (up1 - low1)/2;
-			if(v[mid1] <= r){
-				ans1 = mid1;
-				low1 = mid1 + 1;
-			}
-			else{
-				up1 = mid1 - 1;
-			}
-		}
-		dbg(ans1);
-
-		if(ans > ans1){
-			cout << 0 << " ";
-		}
-		else cout << abs(ans - ans1) + 1 << " ";
+		auto itl = lower_bound(v.begin(), v.end(), l);
+		auto itr = upper_bound(v.begin(), v.end(), r);
+		cout << itr - itl << " ";
 	}
+	cout << ln;
 }
 int main() {
 
     cin.tie(0)->sync_with_stdio(0);
-    
-    solve();
+
+        solve();
 
     return 0;
 
